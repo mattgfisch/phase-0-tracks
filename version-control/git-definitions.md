@@ -9,4 +9,4 @@
 * What is a commit? What makes a good commit message?
   A commit way to finalize the version of the branch you are currently working on. It is the final step before pushing the commit to the master branch. A good commit message accurately describes what changes were made and how they will affect the project. 
 * What is a merge conflict?
-  A merge conflict is when two separate changes have been made to the same file, usually even the same lines, and Git cannot decide which change to use. Git then marks that file as conflict and the user will have to solve the conflict on their own. 
+  A merge conflict is when two separate changes have been made to the same file, usually even the same lines, and Git cannot decide which change to use. Git then marks that file as conflict and the user will have to solve the conflict on their very own. 
