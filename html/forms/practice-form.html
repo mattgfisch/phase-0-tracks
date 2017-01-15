@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Snowboard Trip</title>
+  </head>
+  <body>
+  <form name="practice" action="success.html" method="post">
+    <fieldset>
+      <div>
+        <label>Type of snowboard</label>
+        <select name="snowboardType">
+          <option value="all-mountain">All-Mountain</option>
+          <option value="park">Park</option>
+          <option value="back-country">Back-country</option>
+        </select>  
+      </div>
+      <div>
+        <label>Name of board</label>
+        <input type="text" name="boardName">
+      </div>
+      <div>
+        <label>Date of trip</label>
+        <input type="date" name="date">
+      </div>
+      <div>
+        <label>Contact Email</label>
+        <input type="email" name="email">
+      </div>
+      <div>
+        <label>Special Instructions</label>
+        <textarea name="instructions" placeholder="Ex. Put on plane last"></textarea>
+      </div>
+      <div>
+        <input type="checkbox" name="payPremium" value="agree">
+        I would like to pay for premium shipping
+      </div>
+    </fieldset>
+    <button type="submit">Submit</button>
+
+  </form>
+  </body>
+</html>
