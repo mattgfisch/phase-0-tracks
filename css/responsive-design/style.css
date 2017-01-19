@@ -1,3 +1,47 @@
+body{
+  max-width: 960px;
+  min-width: 200px;
+}
+
+
+@media screen and (max-width: 740px) {
+    body{
+        font-size: 0.75em;
+    }
+  
+}
+
+@media screen and (max-width: 420px) {
+    main{
+        display: block;
+        width: 100%;        
+    }
+    #external-links{
+      width: 100%;
+      display: inline;
+    }
+    #external-links li{
+        display: inline;
+    }
+    #external-links h1, #external-links ul{
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+   
+}
+
+#external-links{
+  max-width: 22%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+main {
+  display: inline-block;
+  max-width:78%;
+  
+}
+
 blockquote {
   border-left: 5px solid blue;
   padding: 15px;
@@ -18,7 +62,7 @@ cite {
 image, figure, and figcaption CSS if you'd like, 
 but it's optional! */
 img {
-  width: 100%;
+  width: 70%;
 }
 
 figure {
@@ -30,3 +74,4 @@ figcaption {
   font-style: italic;
   text-align: right;
 }
+
