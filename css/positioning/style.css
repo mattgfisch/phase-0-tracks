@@ -1,12 +1,12 @@
 #glasses{
   position: absolute;
-  top: 230px;
+  top: 130px;
   left: 285px;
 }
 
 #hat{
   position: absolute;
-  top: 10px;
+  top: -90px;
   left: 235px;
 
 }
