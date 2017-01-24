@@ -1,0 +1,29 @@
+.column-1, .column-2{
+  display: inline-block;
+  width: 40%;
+  vertical-align: top;
+  margin: 5% 4%;
+}
+
+body{
+  font-family: Verdana;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  -webkit-text-stroke: 1px black;
+  background-image: url(http://blog.awakeandwitness.net/wp/wp-content/uploads/2016/09/water-1018808_960_720.jpg);
+  background-repeat: repeat;
+}
+
+a:hover{
+  color: #ff0000;
+}
+
+a{
+  color: #FFC540;
+}
+
+header{
+  position: relative;
+  top: 10px;
+}
