@@ -50,3 +50,20 @@
   - Walk forward until the elevator door opening is two feet behind you
 --- ---
 
+--- Unlock Phone ---
+
+* Assumes phone is on a level surface and in front of you *
+
+- Extend index finger from hand
+- Move arm until tip of index finger is directly above "home" button
+- Until the tip of index finger touches "home" button:
+  - Maintain arm in same (x,y) position, only moving on the z axis
+  - Move arm down, in a direction that is perpendicular to the floor
+- Press down on "home" button with index finger
+- Move hand towards top of phone
+  - Stop when tip of index finger is in the middle of the screen
+- Place tip of finger on the screen
+- Holding the finger tip on the screen, move finger to the right in a swiping motion
+
+--- ---
+   
