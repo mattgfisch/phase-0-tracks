@@ -1,0 +1,69 @@
+--- Algorithm for using an elevator ---
+
+- Rotate body left until you are facing in the direction of the elevator
+  - Stop rotating and stand still
+- Walk forward until you are 5 feet from the elevator doors
+  - Stop walking and stand still
+- Rotate body left until you are facing a button on the wall next to the elevator
+  - Stop rotating and stand still
+- Walk forward until you are the length of your arm from the button
+  - Stop walking and stand still
+- Until hand is level with height of button:
+  - Raise right arm like a lever, with your shoulder acting as a fulcrum
+  - Keep arm and hand extended away from body
+- Until hand is touching the button on the wall:
+  - Keep arm extended at same height
+  - Rotate body left
+- Until button is fully pressed:
+  - Push arm away from body by shifting weight in the direction of the button
+- Retract arm
+- Rotate body left until you are facing in the direction of the elevator
+  - Stop rotating and stand still
+- Walk forward until you are 1 feet from the elevator doors
+  - Stop walking and stand still  
+- When elevator doors open:
+  - Walk forward until elevator doors are 1 foot behind you
+  - Stop walking and stand still
+- Rotate body left until you are facing in the direction of the buttons inside the elevator
+  - Stop rotating and stand still
+- Walk forward until you are the length of your arm from the buttons
+  - Stop walking and stand still
+- Look at button at the top and left side of the panel of buttons
+- Until you find the desired floor number:
+  - Compare number on button to desired floor number
+  - If they are equal, store button as "THE BUTTON" and move to next step
+  - Else
+    - If button is last of row, move eyes down one row and left to button on left side of row and repeat from "Compare number..."
+    - Else, move eyes one button to the right, repeat from "Compare number..."  
+- Until hand is level with height of "the button":
+  - Raise right arm like a lever, with your shoulder acting as a fulcrum
+  - Keep arm and hand extended away from body
+- Until hand is touching "THE BUTTON" on the wall:
+  - Keep arm extended at same height
+  - Rotate body left
+- Until "THE BUTTON" is fully pressed:
+  - Push arm away from body by shifting weight in the direction of "THE BUTTON"
+- Retract arm
+- Rotate body left until you are facing in the direction of the elevator door
+  - Stop rotating and stand still
+- When elevator doors open:
+  - Walk forward until the elevator door opening is two feet behind you
+--- ---
+
+--- Unlock Phone ---
+
+* Assumes phone is on a level surface and in front of you *
+
+- Extend index finger from hand
+- Move arm until tip of index finger is directly above "home" button
+- Until the tip of index finger touches "home" button:
+  - Maintain arm in same (x,y) position, only moving on the z axis
+  - Move arm down, in a direction that is perpendicular to the floor
+- Press down on "home" button with index finger
+- Move hand towards top of phone
+  - Stop when tip of index finger is in the middle of the screen
+- Place tip of finger on the screen
+- Holding the finger tip on the screen, move finger to the right in a swiping motion
+
+--- ---
+   
