@@ -3,7 +3,7 @@
   - Convert name to array
   - Swap first and last name
     - Split by ' '
-    - Swap using helper variable (Is there a cleaner way?)
+    - Swap using helper variable (Is there a cleaner way?) (Used reverse)
       - helper = [0]
       - [0] = [1]
       - [1] = helper
@@ -40,13 +40,18 @@ end
 
 # Swap first and last name
 def swap_names(full_name)
-  helper = full_name[0]
-  full_name[0] = full_name[1]
-  full_name[1] = helper
-
-  full_name
+  full_name.reverse!
 end
 
+# Change vowels to next in sequence
+def switch_vowels(full_name)
+  split_names(full_name)
+end
+
+# Split names into characters
+def split_names(full_name)
+  full_name.map! {|x| x.split('')}
+end
 
 
 
@@ -64,7 +69,7 @@ full_name = to_array(full_name)
 
 swap_names(full_name)
 
-p full_name
+p switch_vowels(full_name)
 
 
 
