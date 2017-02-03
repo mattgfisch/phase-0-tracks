@@ -20,3 +20,30 @@
       - If vowel, do nothing
   - Print result
 =end
+
+#
+#
+# METHODS
+#
+#
+
+def get_name()
+  puts "What is your real name?"
+  gets.chomp
+end
+
+
+
+
+
+
+
+#
+#
+# DRIVER CODE
+#
+#
+
+full_name = get_name()
+
+p full_name
