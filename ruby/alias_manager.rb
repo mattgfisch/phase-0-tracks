@@ -6,7 +6,7 @@
     - Swap using helper variable (Is there a cleaner way?)
       - helper = [0]
       - [0] = [1]
-      - [1] = [0]
+      - [1] = helper
   - Change all vowels (a, e, i, o, or u) to next vowel in sequence (loop)
     - Detect if a letter is a vowel 
       - If vowel, map next vowel in sequence
@@ -27,11 +27,25 @@
 #
 #
 
+# Get name to be scrambled
 def get_name()
   puts "What is your real name?"
   gets.chomp
 end
 
+# Split name into array, each word being an element
+def to_array(full_name)
+  full_name.split(' ')
+end
+
+# Swap first and last name
+def swap_names(full_name)
+  helper = full_name[0]
+  full_name[0] = full_name[1]
+  full_name[1] = helper
+
+  full_name
+end
 
 
 
@@ -46,4 +60,11 @@ end
 
 full_name = get_name()
 
+full_name = to_array(full_name)
+
+swap_names(full_name)
+
 p full_name
+
+
+
