@@ -7,6 +7,7 @@
       - helper = [0]
       - [0] = [1]
       - [1] = helper
+  - Split names into individual letters
   - Change all vowels (a, e, i, o, or u) to next vowel in sequence (loop)
     - Detect if a letter is a vowel 
       - If vowel, map next vowel in sequence
@@ -46,11 +47,35 @@ end
 # Change vowels to next in sequence
 def switch_vowels(full_name)
   split_names(full_name)
+  next_vowel(full_name)
 end
 
 # Split names into characters
 def split_names(full_name)
   full_name.map! {|x| x.split('')}
+end
+
+# Change to next vowel
+def next_vowel(full_name)
+  
+  
+  full_name.map!{|word|
+    
+    word.map!{|x|
+      vowels = "aeiou"
+      x = vowels[3]
+      # for i in 0..."aeiou".length
+        
+        # if x == vowels[i]
+        #   if i == (vowels.length - 1)
+        #     x = "a"
+        #   else
+        #     x = vowels[i + 1]
+        #   end
+        # end
+      # end
+    }
+  }
 end
 
 
