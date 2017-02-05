@@ -57,25 +57,57 @@ end
 
 # Change to next vowel
 def next_vowel(full_name)
-  
-  
+
   full_name.map!{|word|
     
     word.map!{|x|
       vowels = "aeiou"
-      x = vowels[3]
-      # for i in 0..."aeiou".length
-        
-        # if x == vowels[i]
-        #   if i == (vowels.length - 1)
-        #     x = "a"
-        #   else
-        #     x = vowels[i + 1]
-        #   end
-        # end
-      # end
+      
+      case x
+        when vowels[0]
+          x = vowels[1]
+        when vowels[1]
+          x = vowels[2]
+        when vowels[2]
+          x = vowels[3]
+        when vowels[3]
+          x = vowels[4]
+        when vowels[4]
+          x = vowels[0]
+        else
+          x
+      end
     }
   }
+end
+
+def switch_consonants(full_name)
+
+  full_name.map!{|word|
+    word.map!{|x|
+      alphabet = "bcdfghjklmnpqrstvwxyz"
+      for i in 0...21
+        # if x == alphabet[i]
+        #   x = "b"
+        # else
+        #   x
+        # end  
+      end
+
+    }
+  }
+
+  # for i in 0...full_name.length
+  #   for j in 0...full_name[i].length
+  #     for k in 0...alphabet.length
+  #       if full_name[i][j] == alphabet[k]
+  #         full_name[i][j].replace(alphabet[k+1])        
+  #       else
+  #         full_name[i][j]
+  #       end  
+  #     end  
+  #   end  
+  # end
 end
 
 
@@ -94,7 +126,10 @@ full_name = to_array(full_name)
 
 swap_names(full_name)
 
-p switch_vowels(full_name)
+switch_vowels(full_name)
+ 
+switch_consonants(full_name)
 
+p full_name
 
 
