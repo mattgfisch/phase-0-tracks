@@ -107,4 +107,32 @@ delete_item(new_list, "lemonade")
 
 update_list(new_list, "ice cream", 1)
 
-print_list(new_list)
+print_list(new_list
+
+#########################################################
+# REFLECTION
+=begin
+
+   - I learned how to split apart a method into different sections and detail each one.
+   Breaking each method into input, steps, and output made it much easier to write the method
+   afterword. 
+
+   - For this challenge, an array would have been easier to iterate through, but a hash organizes
+   the data in clearer fashion. Using an array worked well for splitting up the string of items into
+   separate words, but a hash made assigning quantities to keys much easier.
+
+   - A method returns either the return of the last line of code, or what you explicitly specify it
+   to return.
+
+   - You can pass through most data types and you can even set parameters to be optional or have a default value.
+
+   - You can pass information between methods by calling a method within a method, with parameters that are contained
+   in the outer method.
+
+   - I have a much better understanding of how to use .each and how to use a return of a method to your
+   advantage. For example, having a method return an object and store it by including the method call as part 
+   of an assignment. I'm pretty clear on everything else, but I would still like more practice with .each and .map
+   and other ways of iterating through data structures. 
+
+
+=end
