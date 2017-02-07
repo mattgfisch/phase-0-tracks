@@ -62,10 +62,19 @@ Fido.sit # Prints tongue emoji
 Fred = Gymnast.new
 feats = []
 feats << Fred.cartwheels
+ 
+gymnast = []
 
-for i in 0...50 
-  olympian = "olympian" + i.to_s    #"gymast0"     
+gymnast = 50.times.collect { |olympian|     
   olympian = Gymnast.new
-end
+}
 
+p gymnast
 
+gymnast[22].backflip
+
+# Iterating to call an instance of class to run a method
+gymnast.each { |person| 
+ puts "#{person}:"
+ person.backflip
+}
