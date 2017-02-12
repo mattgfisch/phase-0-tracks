@@ -1,6 +1,8 @@
 # ----- SANTA CLASS DEFINITION
 class Santa
-  
+  attr_reader :ethnicity
+  attr_accessor :gender, :age
+
   def initialize(gender, ethnicity)
     
     puts "Initializing Santa instance..."
@@ -30,19 +32,6 @@ class Santa
     @reindeer_ranking << reindeer
   end
 
-  def gender=(new_gender)
-    @gender = new_gender
-  end
-
-  #Getter methods
-  def age
-    @age
-  end
-
-  def ethnicity
-    @ethnicity
-  end  
-
 end
 
 # ----- TEST CODE
@@ -71,5 +60,32 @@ end
 p santas[4].celebrate_birthday
 p santas[4].get_mad_at("Dancer")
 p santas[5].gender = "Male"
+p santas[4].age
+p santas[3].ethnicity
+
+# ----- BUILDING SANTAS
+
+# Get how many santas you want to build (n)
+puts "How many santas would you like to build?"
+n = gets.chomp.to_i
+
+# Loop n times, creating new santas with random gender and ethnicity
+n.times do
+  # Randomly select gender and ethnicity
+  santa = Santa.new(test_genders.sample, test_ethnicities.sample)
+
+  # Randomly set age between 0 and 140
+  rand_age = Random.new
+  santa.age = rand_age.rand(141)
+
+  #Print attributes of newly built santa
+  puts "-"*10 + "NEW SANTA ATTRIBUTES" + "-"*10
+  puts "Age: #{santa.age}"
+  puts "Gender: #{santa.gender}"
+  puts "Ethnicity: #{santa.ethnicity}"
+  puts "-"*40
+end
+
+
 
 
