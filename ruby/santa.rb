@@ -24,8 +24,25 @@ end
 
 # ----- TEST CODE
 
-happy = Santa.new
+happy = Santa.new("male", "white")
 
 happy.speak
 
 happy.eat_milk_and_cookies("snickerdoodle")
+
+#Create array of santas
+santas = []
+
+#Establish test arguments
+test_genders = ["agender", "female", "bigender", "male", "gender fluid", "N/A"]
+test_ethnicities = ["black", "white", "chinese", "east-african", "aborigine", "N/A"]
+
+#Loop through test arguments and shovel into a new santa in santas array
+test_genders.length.times do |i|
+  santas << Santa.new(test_genders[i], test_ethnicities[i])
+end
+
+#Should print data for 6th santa
+p santas[5]
+
+
