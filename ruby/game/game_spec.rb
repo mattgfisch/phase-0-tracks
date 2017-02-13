@@ -24,5 +24,7 @@
       expect(game.input_word("word")).to eq(game.word) 
     end
     
-    
+    it "increments guess count" do
+      expect(game.increment_guess).to eq 1
+    end
   end
