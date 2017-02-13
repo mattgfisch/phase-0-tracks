@@ -15,3 +15,14 @@
 # Print either win or lose
   # Based on calculate_win method and won_game boolean
 
+class Game
+  attr_reader :word
+  
+  def initialize 
+    @word = ""
+  end
+
+  def input_word(word)
+    @word = word
+  end
+end
