@@ -96,3 +96,22 @@ end
 
 #=======================================================================
 # Reflection Section
+=begin
+
+- Both hashes use key, value pairs, but in the outer hash the key is a string and the assignment is done
+via a hash rocket, while in the inner hash the assignment is done using syntactic sugar of a symbol
+
+- require is used when the imported file is a file that will only be accessed for its data, while require_relative is used to 
+provide features to be used in the program by including it in the program, library, framework etc.
+
+- You can use .each_key |key|, .each_value|value|, and .each |key, value| to iterate through a hash
+
+- The variables weren't required because all of them were instance variables. They don't need to be passed through
+as arguments because they can be accessed within each respective method within virus_effects.
+
+- This challenge helped me think about refactoring a class, and how you can reduce clutter by using attr_reader for
+the instance variables you access within methods in the class.
+
+
+
+=end
