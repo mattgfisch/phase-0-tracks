@@ -22,7 +22,7 @@ class Game
     @word = []
     @guess = ""
     @guessed_letters = []
-    @already_guessed = false
+    @already_guessed = true
     @guessed_word = []
     @guess_count = 0
     @is_over = false
@@ -64,65 +64,79 @@ class Game
   end
 
   def check_if_previous_guess(guess)
-    @guessed_letters.each do |letter|
-      if letter == guess
-        @already_guessed = true
-      else
-        @already_guessed = false
+    if @guessed_letters.length > 0
+      @guessed_letters.each do |letter|
+        if letter == guess
+          @already_guessed = true
+        else
+          @already_guessed = false
+        end
       end
+    else
+      @already_guessed = false
     end
     @already_guessed
   end
+  
+  
 end
 
 # ----- USER INTERFACE
 
-# game = Game.new
+game = Game.new
 
-# puts "_"*20
-# puts "Player 1, please type your word to be guessed:"
-# puts "_"*20
-# word = gets.chomp
+puts "_"*20
+puts "Player 1, please type your word to be guessed:"
+puts "_"*20
+word = gets.chomp
 
 
-# # Input word
-# game.input_word(word)
+# Input word
+game.input_word(word)
 
-# # Create empty guessed word
-# game.create_guessed
+# Create empty guessed word
+game.create_guessed
 
-# # Clear screen
-# system "clear"
+# Clear screen
+system "clear"
 
-# # Loop until game is over
-# while !game.is_over
+# Loop until game is over
+while !game.is_over
   
-#   # Display word as spaces + guessed char (guessed_word)
-#   game.print_guessed
-#   while !already_guessed do
-#     # Input guess
-#     puts "_"*20
-#     puts "Player 2, type the letter you'd like to guess:"
-#     puts "_"*20
-#     g_letter = gets.chomp
+  # Display word as spaces + guessed char (guessed_word)
+  game.print_guessed
+  while game.already_guessed do
+    # Input guess
+    puts "_"*20
+    puts "Player 2, type the letter you'd like to guess:"
+    puts "_"*20
+    g_letter = gets.chomp
 
-#     # Check if already guessed
-#     check_if_previous_guess(g_letter)
+    # Clear screen
+    system "clear"
 
-#     puts "_"*20
-#     puts "Sorry that letter has already been guessed."
-#     puts "_"*20
-#   end
-#   game.input_guess(g_letter)
+    # Check if already guessed
+    game.check_if_previous_guess(g_letter)
+
+    # Print statement if letter has already been guessed
+    if game.already_guessed
+      puts "_"*20
+      puts "Sorry the letter '#{g_letter}' has already been guessed."
+      puts "_"*20
+    end
+  end
+  game.input_guess(g_letter)
+
+  game.increment_guess
+
 
    
+  game.already_guessed = true
 
-#   # Loop until guess_count > word.length + 3
-#   if game.guess_count > (game.word.length + 3)
-#     game.won_game = false
-#     game.is_over = true
-#   end
-#   game.is_over = true
-# end
+  # Loop until guess_count > word.length + 3
+  if game.guess_count > (game.word.length + 2)
+    game.is_over = true
+  end
+end
 
 

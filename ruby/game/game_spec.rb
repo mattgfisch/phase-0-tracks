@@ -48,4 +48,10 @@
       expect(game.check_if_previous_guess("h")).to eq(true)
       expect(game.check_if_previous_guess("y")).to eq(false)
     end
+
+    if "compare guess to letter" do
+      expect(game.input_word("word"))
+      expect(game.check_guess("i")).to eq(false)
+      expect(game.check_guess("o")).to eq(true)
+    end
   end
