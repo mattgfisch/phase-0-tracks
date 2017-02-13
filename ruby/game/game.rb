@@ -12,6 +12,8 @@
         # Print correct guess
       # Else
         # Print incorrect guess
+    # Break if no '_' left in guessed_word array
+      # Declare 
 # Print either win or lose
   # Based on won_game boolean
 
@@ -106,7 +108,7 @@ class Game
     puts "_"*20
   end
 
-  def update_guessed_word()
+  def update_guessed_word
     l_index = 0
     @word.each do |letter|
       if letter.downcase == @guess
@@ -119,12 +121,21 @@ class Game
     end
 
     @guessed_word
+  end
+
+  def check_game_over
+    if @guessed_word.index("_") == nil
+      @is_over = true
+    else
+      @is_over
+    end
   end  
 
 end
 
 # ----- USER INTERFACE
 
+# Create new instance of game
 game = Game.new
 
 puts "_"*20
@@ -157,7 +168,7 @@ while !game.is_over
     # Clear screen
     system "clear"
 
-    # Check if already guessed
+    # Check if letter was already guessed
     game.check_if_previous_guess(g_letter)
 
     # Print statement if letter has already been guessed
@@ -196,16 +207,28 @@ while !game.is_over
   # Print how many guesses the user has left
   game.print_guesses_remaining
    
-  
+  # Check to see if user has completed the word. If true, break and end game
+  break if game.check_game_over
 
   # Loop until guess_count > word.length + 3
   if game.guess_count > (game.word.length + 2)
     game.is_over = true
+    game.won_game = false
   end
 
   # Reset already_guessed for new guess
   game.already_guessed = true
 
+end
+
+if game.won_game
+  puts "_"*20
+  puts "CONGRATULATIONS! PLAYER 2 WON THE GAME!"
+  puts "_"*20
+else
+  puts "_"*20
+  puts "CONGRATULATIONS! PLAYER 2 IS COMPLETELY INEPT AT GUESSING AND LOST THE GAME!"
+  puts "_"*20
 end
 
 

@@ -64,6 +64,14 @@
       expect(game.update_guessed_word).to eq(["b", "_", "_", "_", "_", "_", "b", "_", "_", "_"])
     end
 
+    it "check to see if user completed the word" do
+      expect(game.input_word("b"))
+      expect(game.create_guessed)
+      expect(game.input_guess("b"))
+      expect(game.update_guessed_word)
+      expect(game.check_game_over()).to eq(true)
+    end
+
 
 
 
