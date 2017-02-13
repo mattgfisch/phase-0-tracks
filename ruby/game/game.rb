@@ -16,7 +16,7 @@
   # Based on won_game boolean
 
 class Game
-  attr_accessor :word, :guess_count, :guess, :guessed_word, :is_over, :won_game, :already_guessed
+  attr_accessor :word, :guess_count, :guess, :guessed_word, :guessed_letters, :is_over, :won_game, :already_guessed
   
   def initialize 
     @word = []
@@ -70,6 +70,7 @@ class Game
         
         if letter == guess
           @already_guessed = true
+          break
         else
           @already_guessed = false
         end
@@ -87,7 +88,7 @@ class Game
     correct_guess = false
     
     @word.each do |letter|
-      if @guess == letter
+      if @guess == letter.downcase
         correct_guess = true
       else
         correct_guess
@@ -108,7 +109,7 @@ class Game
   def update_guessed_word()
     l_index = 0
     @word.each do |letter|
-      if letter == @guess
+      if letter.downcase == @guess
         @guessed_word[l_index] = letter
       else
         @guessed_word
@@ -204,6 +205,7 @@ while !game.is_over
 
   # Reset already_guessed for new guess
   game.already_guessed = true
+
 end
 
 
