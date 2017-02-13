@@ -65,20 +65,61 @@ class Game
 
   def check_if_previous_guess(guess)
     if @guessed_letters.length > 0
+ 
       @guessed_letters.each do |letter|
+        
         if letter == guess
           @already_guessed = true
         else
           @already_guessed = false
         end
+
       end
     else
       @already_guessed = false
     end
+
     @already_guessed
   end
   
-  
+  def check_guess
+    # Checks guess
+    correct_guess = false
+    
+    @word.each do |letter|
+      if @guess == letter
+        correct_guess = true
+      else
+        correct_guess
+      end  
+
+    end
+
+    correct_guess 
+  end
+
+  def print_guesses_remaining
+    guesses_remaining = @word.length + 3 - @guess_count
+    puts "_"*20
+    puts "Guesses remaining: #{guesses_remaining}"
+    puts "_"*20
+  end
+
+  def update_guessed_word()
+    l_index = 0
+    @word.each do |letter|
+      if letter == @guess
+        @guessed_word[l_index] = letter
+      else
+        @guessed_word
+      end
+      #Increment index within word
+      l_index += 1
+    end
+
+    @guessed_word
+  end  
+
 end
 
 # ----- USER INTERFACE
@@ -123,20 +164,46 @@ while !game.is_over
       puts "_"*20
       puts "Sorry the letter '#{g_letter}' has already been guessed."
       puts "_"*20
+
+      game.print_guessed
     end
   end
+
+  # Input guessed letter
   game.input_guess(g_letter)
 
+  # Increment guess count
   game.increment_guess
 
+  # Check guess
+  game.check_guess
 
+  # Update guessed word based on if the letter guessed was correct
+  if game.check_guess
+    
+    game.update_guessed_word
+
+    puts "_"*20
+    puts "Congratulations, you guessed correctly!"
+    puts "_"*20
+  else
+    puts "_"*20
+    puts "Sorry, your guess was incorrect!"
+    puts "_"*20
+  end
+
+  # Print how many guesses the user has left
+  game.print_guesses_remaining
    
-  game.already_guessed = true
+  
 
   # Loop until guess_count > word.length + 3
   if game.guess_count > (game.word.length + 2)
     game.is_over = true
   end
+
+  # Reset already_guessed for new guess
+  game.already_guessed = true
 end
 
 

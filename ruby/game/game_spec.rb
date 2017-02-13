@@ -49,9 +49,23 @@
       expect(game.check_if_previous_guess("y")).to eq(false)
     end
 
-    if "compare guess to letter" do
+    it "compare guess to letter" do
       expect(game.input_word("word"))
-      expect(game.check_guess("i")).to eq(false)
-      expect(game.check_guess("o")).to eq(true)
+      expect(game.input_guess("i"))
+      expect(game.check_guess).to eq(false)
+      expect(game.input_guess("o"))
+      expect(game.check_guess).to eq(true)
     end
+
+    it "update guessed word to include new letter" do
+      expect(game.input_word("basketball"))
+      expect(game.create_guessed)
+      expect(game.input_guess("b"))
+      expect(game.update_guessed_word).to eq(["b", "_", "_", "_", "_", "_", "b", "_", "_", "_"])
+    end
+
+
+
+
+
   end
