@@ -16,7 +16,7 @@
   # Based on won_game boolean
 
 class Game
-  attr_reader :word, :guess_count, :guess, :guessed_word, :is_over, :won_game
+  attr_accessor :word, :guess_count, :guess, :guessed_word, :is_over, :won_game
   
   def initialize 
     @word = []
@@ -43,32 +43,58 @@ class Game
     @guessed_word
   end
 
-  def update_guessed
+  def print_guessed
+    guessed_print = ""
+    @guessed_word.each do |i|
+      guessed_print = guessed_print + i + " "
+    end
+    puts "_"*20
+    puts "Here is the word you are working on:"
+    puts guessed_print
+    puts "_"*20
 
+    guessed_print
   end
 end
 
 # ----- USER INTERFACE
 
-# game = Game.new
+game = Game.new
 
-# puts "Player 1, please type your word to be guessed:"
-# word = gets.chomp
+puts "_"*20
+puts "Player 1, please type your word to be guessed:"
+puts "_"*20
+word = gets.chomp
 
-# # Input word
-# game.input_word(word)
 
-# # Create empty guessed word
+# Input word
+game.input_word(word)
 
-# # Loop until game is over
-# while !game.is_over
+# Create empty guessed word
+game.create_guessed
+
+# Clear screen
+system "clear"
+
+# Loop until game is over
+while !game.is_over
   
+  # Display word as spaces + guessed char (guessed_word)
+  game.print_guessed
 
-#   # Loop until guess_count > word.length + 3
-#   if game.guess_count > (game.word.length + 3)
-#     game.won_game = false
-#     game.is_over = true
-#   end
-# end
+  # Input guess
+  puts "_"*20
+  puts "Player 2, type the letter you'd like to guess:"
+  puts "_"*20
+  guess = gets.chomp
+
+  game.guess = guess 
+
+  # Loop until guess_count > word.length + 3
+  if game.guess_count > (game.word.length + 3)
+    game.won_game = false
+    game.is_over = true
+  end
+end
 
 

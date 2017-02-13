@@ -37,8 +37,9 @@
       expect(game.create_guessed).to eq(["_", "_", "_", "_"])
     end
 
-    # it "prints guessed word" do
-    #   game.input_word("word")
-    #   expect(game.print_guess).to eq("_ _ _ _ _ ")
-    # end
+    it "prints guessed word" do
+      expect(game.input_word("word")).to eq(game.word)
+      expect(game.create_guessed).to eq(["_", "_", "_", "_"])
+      expect(game.print_guessed).to eq("_ _ _ _ ")
+    end
   end
