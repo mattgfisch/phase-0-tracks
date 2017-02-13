@@ -42,4 +42,10 @@
       expect(game.create_guessed).to eq(["_", "_", "_", "_"])
       expect(game.print_guessed).to eq("_ _ _ _ ")
     end
+
+    it "checks if guess was already made" do
+      expect(game.input_guess("h"))
+      expect(game.check_if_previous_guess("h")).to eq(true)
+      expect(game.check_if_previous_guess("y")).to eq(false)
+    end
   end
