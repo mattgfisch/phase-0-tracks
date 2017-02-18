@@ -43,8 +43,8 @@
 
     it "checks if guess was already made" do
       expect(game.input_guess("h"))
-      expect(game.check_if_previous_guess("h")).to eq(true)
-      expect(game.check_if_previous_guess("y")).to eq(false)
+      expect(game.guessed_letters.include?("h")).to eq(true)
+      expect(game.guessed_letters.include?("y")).to eq(false)
     end
 
     it "compare guess to letter" do
