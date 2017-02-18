@@ -18,14 +18,13 @@
   # Based on won_game boolean
 
 class Game
-  attr_accessor :word, :is_over, :won_game
+  attr_accessor :word, :won_game
   attr_reader :guessed_word, :guessed_letters
 
   def initialize(word) 
     @word = word
     @guessed_letters = []
     @guessed_word = []
-    @is_over = false
     @won_game = true
   end
 
@@ -107,7 +106,7 @@ game.create_guessed
 system "clear"
 
 # Loop until game is over
-while !game.is_over
+loop do
   
   # Display word as spaces + guessed char (guessed_word)
   game.print_guessed
@@ -164,10 +163,10 @@ while !game.is_over
   # Check to see if user has completed the word. If true, break and end game
   break if game.check_game_over
 
-  # Loop until guess_count > word.length + 3
+  # Loop until guess_count > word.length + 3. If true, user lost and end the game
   if game.guessed_letters.length > (game.word.length + 2)
-    game.is_over = true
     game.won_game = false
+    break
   end
 
 end
