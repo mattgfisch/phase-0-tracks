@@ -49,9 +49,9 @@
 
     it "compare guess to letter" do
       expect(game.input_guess("i"))
-      expect(game.check_guess).to eq(false)
+      expect(game.split_word.include?(game.guessed_letters.last)).to eq(false)
       expect(game.input_guess("o"))
-      expect(game.check_guess).to eq(true)
+      expect(game.split_word.include?(game.guessed_letters.last)).to eq(true)
     end
 
     it "update guessed word to include new letter" do

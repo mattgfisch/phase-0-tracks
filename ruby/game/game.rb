@@ -62,22 +62,6 @@ class Game
 
     guessed_print
   end
-  
-  def check_guess
-    # Checks guess
-    correct_guess = false
-    
-    split_word.each do |letter|
-      if @guessed_letters.last == letter.downcase
-        correct_guess = true
-      else
-        correct_guess
-      end  
-
-    end
-
-    correct_guess 
-  end
 
   def print_guesses_remaining
     guesses_remaining = @word.length + 3 - @guess_count
@@ -168,11 +152,8 @@ while !game.is_over
   # Increment guess count
   game.increment_guess
 
-  # Check guess
-  game.check_guess
-
   # Update guessed word based on if the letter guessed was correct
-  if game.check_guess
+  if game.split_word.include?(g_letter)
     
     game.update_guessed_word
 
