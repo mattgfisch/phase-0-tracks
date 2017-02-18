@@ -18,10 +18,10 @@
   require_relative 'game'
 
   describe Game do 
-    let(:game) {Game.new}
+    let(:game) {Game.new("word")}
 
     it "inputs word" do
-      expect(game.input_word("word")).to eq(game.word) 
+      expect(game.word).to eq("word") 
     end
     
     it "increments guess count" do
@@ -33,12 +33,10 @@
     end
 
     it "creates and stores guessed word" do
-      expect(game.input_word("word")).to eq(["w", "o", "r", "d"])
       expect(game.create_guessed).to eq(["_", "_", "_", "_"])
     end
 
     it "prints guessed word" do
-      expect(game.input_word("word")).to eq(game.word)
       expect(game.create_guessed).to eq(["_", "_", "_", "_"])
       expect(game.print_guessed).to eq("_ _ _ _ ")
     end
@@ -50,7 +48,6 @@
     end
 
     it "compare guess to letter" do
-      expect(game.input_word("word"))
       expect(game.input_guess("i"))
       expect(game.check_guess).to eq(false)
       expect(game.input_guess("o"))
@@ -58,14 +55,13 @@
     end
 
     it "update guessed word to include new letter" do
-      expect(game.input_word("basketball"))
       expect(game.create_guessed)
-      expect(game.input_guess("b"))
-      expect(game.update_guessed_word).to eq(["b", "_", "_", "_", "_", "_", "b", "_", "_", "_"])
+      expect(game.input_guess("w"))
+      expect(game.update_guessed_word).to eq(["w", "_", "_", "_"])
     end
 
     it "check to see if user completed the word" do
-      expect(game.input_word("b"))
+      expect(game.word = "b")
       expect(game.create_guessed)
       expect(game.input_guess("b"))
       expect(game.update_guessed_word)

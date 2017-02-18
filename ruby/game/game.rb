@@ -18,10 +18,11 @@
   # Based on won_game boolean
 
 class Game
-  attr_accessor :word, :guess_count, :guess, :guessed_word, :guessed_letters, :is_over, :won_game, :already_guessed
-  
-  def initialize 
-    @word = []
+  attr_accessor :word, :is_over, :won_game, :already_guessed
+  attr_reader :guess_count, :guess, :guessed_word, :guessed_letters
+
+  def initialize(word) 
+    @word = word
     @guess = ""
     @guessed_letters = []
     @already_guessed = true
@@ -31,8 +32,8 @@ class Game
     @won_game = true
   end
 
-  def input_word(word)
-    @word = word.split('')
+  def split_word
+    @word.split('')
   end
 
   def input_guess(guess)
@@ -45,7 +46,7 @@ class Game
   end
 
   def create_guessed
-    @word.each do
+    split_word.each do
       @guessed_word << "_"
     end
 
@@ -89,7 +90,7 @@ class Game
     # Checks guess
     correct_guess = false
     
-    @word.each do |letter|
+    split_word.each do |letter|
       if @guess == letter.downcase
         correct_guess = true
       else
@@ -110,7 +111,7 @@ class Game
 
   def update_guessed_word
     l_index = 0
-    @word.each do |letter|
+    split_word.each do |letter|
       if letter.downcase == @guess
         @guessed_word[l_index] = letter
       else
@@ -135,17 +136,16 @@ end
 
 # ----- USER INTERFACE
 
-# Create new instance of game
-game = Game.new
+
+
 
 puts "_"*20
 puts "Player 1, please type your word to be guessed:"
 puts "_"*20
 word = gets.chomp
 
-
-# Input word
-game.input_word(word)
+# Create new instance of game and input word
+game = Game.new(word)
 
 # Create empty guessed word
 game.create_guessed
