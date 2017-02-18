@@ -23,7 +23,6 @@ class Game
 
   def initialize(word) 
     @word = word
-    @guess = ""
     @guessed_letters = []
     @already_guessed = true
     @guessed_word = []
@@ -38,7 +37,6 @@ class Game
 
   def input_guess(guess)
       @guessed_letters << guess
-      @guess = guess
   end
 
   def increment_guess
@@ -91,7 +89,7 @@ class Game
     correct_guess = false
     
     split_word.each do |letter|
-      if @guess == letter.downcase
+      if @guessed_letters.last == letter.downcase
         correct_guess = true
       else
         correct_guess
@@ -112,7 +110,7 @@ class Game
   def update_guessed_word
     l_index = 0
     split_word.each do |letter|
-      if letter.downcase == @guess
+      if letter.downcase == @guessed_letters.last
         @guessed_word[l_index] = letter
       else
         @guessed_word
@@ -134,7 +132,7 @@ class Game
 
 end
 
-# ----- USER INTERFACE
+# # ----- USER INTERFACE
 
 
 
