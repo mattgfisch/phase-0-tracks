@@ -23,13 +23,9 @@
     it "inputs word" do
       expect(game.word).to eq("word") 
     end
-    
-    it "increments guess count" do
-      expect(game.increment_guess).to eq 1
-    end
 
     it "reads guess count" do
-      expect(game.guess_count).to eq 0
+      expect(game.guessed_letters.length).to eq 0
     end
 
     it "creates and stores guessed word" do

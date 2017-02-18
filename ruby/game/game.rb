@@ -19,13 +19,12 @@
 
 class Game
   attr_accessor :word, :is_over, :won_game
-  attr_reader :guess_count, :guessed_word, :guessed_letters
+  attr_reader :guessed_word, :guessed_letters
 
   def initialize(word) 
     @word = word
     @guessed_letters = []
     @guessed_word = []
-    @guess_count = 0
     @is_over = false
     @won_game = true
   end
@@ -36,10 +35,6 @@ class Game
 
   def input_guess(guess)
       @guessed_letters << guess
-  end
-
-  def increment_guess
-    @guess_count += 1
   end
 
   def create_guessed
@@ -64,7 +59,7 @@ class Game
   end
 
   def print_guesses_remaining
-    guesses_remaining = @word.length + 3 - @guess_count
+    guesses_remaining = @word.length + 3 - @guessed_letters.length
     puts "_"*20
     puts "Guesses remaining: #{guesses_remaining}"
     puts "_"*20
@@ -149,9 +144,6 @@ while !game.is_over
   # Input guessed letter
   game.input_guess(g_letter)
 
-  # Increment guess count
-  game.increment_guess
-
   # Update guessed word based on if the letter guessed was correct
   if game.split_word.include?(g_letter)
     
@@ -173,7 +165,7 @@ while !game.is_over
   break if game.check_game_over
 
   # Loop until guess_count > word.length + 3
-  if game.guess_count > (game.word.length + 2)
+  if game.guessed_letters.length > (game.word.length + 2)
     game.is_over = true
     game.won_game = false
   end
