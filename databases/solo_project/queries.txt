@@ -1,0 +1,63 @@
+1. 
+
+SELECT students.name, students.grade, students.birthday, schools.name FROM students JOIN schools ON students.school_id = schools.id;
+
+  Jenny|91|1995-01-09|Business
+  Ralph|78|1994-12-25|Fine Arts
+  Josh|82|1996-11-13|Engineering
+  Lindsay|98|1997-06-04|Arts and Sciences
+  Jordan|60|1996-08-26|Architecture
+  Rachel|87|1995-03-14|Business
+  Carly|84|1996-09-01|Arts and Sciences
+  Zach|94|1995-05-20|Business
+  Bob|88|1997-04-20|Social Work
+  Daniel|92|1998-02-04|Engineering
+  Cassie|96|1996-10-31|Arts and Sciences
+
+
+2.
+
+UPDATE students
+   ...> SET grade=86
+   ...> WHERE name="Josh";
+
+
+3.
+
+SELECT students.name, students.grade, students.birthday, schools.name FROM students JOIN schools ON students.school_id = schools.id;
+
+  Jenny|91|1995-01-09|Business
+  Ralph|78|1994-12-25|Fine Arts
+  Josh|86|1996-11-13|Engineering
+  Lindsay|98|1997-06-04|Arts and Sciences
+  Jordan|60|1996-08-26|Architecture
+  Rachel|87|1995-03-14|Business
+  Carly|84|1996-09-01|Arts and Sciences
+  Zach|94|1995-05-20|Business
+  Bob|88|1997-04-20|Social Work
+  Daniel|92|1998-02-04|Engineering
+  Cassie|96|1996-10-31|Arts and Sciences
+
+
+4.
+
+SELECT students.name, schools.name FROM students JOIN schools ON students.school_id = schools.id;
+
+  Jenny|Business
+  Ralph|Fine Arts
+  Josh|Engineering
+  Lindsay|Arts and Sciences
+  Jordan|Architecture
+  Rachel|Business
+  Carly|Arts and Sciences
+  Zach|Business
+  Bob|Social Work
+  Daniel|Engineering
+  Cassie|Arts and Sciences
+
+
+5. 
+
+DELETE FROM students
+   ...> WHERE name="Jordan";
+
