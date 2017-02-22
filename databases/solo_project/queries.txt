@@ -1,0 +1,108 @@
+1. 
+
+SELECT students.name, students.grade, students.birthday, schools.name FROM students JOIN schools ON students.school_id = schools.id;
+
+  Jenny|91|1995-01-09|Business
+  Ralph|78|1994-12-25|Fine Arts
+  Josh|82|1996-11-13|Engineering
+  Lindsay|98|1997-06-04|Arts and Sciences
+  Jordan|60|1996-08-26|Architecture
+  Rachel|87|1995-03-14|Business
+  Carly|84|1996-09-01|Arts and Sciences
+  Zach|94|1995-05-20|Business
+  Bob|88|1997-04-20|Social Work
+  Daniel|92|1998-02-04|Engineering
+  Cassie|96|1996-10-31|Arts and Sciences
+
+
+2.
+
+UPDATE students
+   ...> SET grade=86
+   ...> WHERE name="Josh";
+
+
+3.
+
+SELECT students.name, students.grade, students.birthday, schools.name FROM students JOIN schools ON students.school_id = schools.id;
+
+  Jenny|91|1995-01-09|Business
+  Ralph|78|1994-12-25|Fine Arts
+  Josh|86|1996-11-13|Engineering
+  Lindsay|98|1997-06-04|Arts and Sciences
+  Jordan|60|1996-08-26|Architecture
+  Rachel|87|1995-03-14|Business
+  Carly|84|1996-09-01|Arts and Sciences
+  Zach|94|1995-05-20|Business
+  Bob|88|1997-04-20|Social Work
+  Daniel|92|1998-02-04|Engineering
+  Cassie|96|1996-10-31|Arts and Sciences
+
+
+4.
+
+SELECT students.name, schools.name FROM students JOIN schools ON students.school_id = schools.id;
+
+  Jenny|Business
+  Ralph|Fine Arts
+  Josh|Engineering
+  Lindsay|Arts and Sciences
+  Jordan|Architecture
+  Rachel|Business
+  Carly|Arts and Sciences
+  Zach|Business
+  Bob|Social Work
+  Daniel|Engineering
+  Cassie|Arts and Sciences
+
+
+5. 
+
+DELETE FROM students
+   ...> WHERE name="Jordan";
+
+
+6.
+
+SELECT * FROM students
+   ...> INNER JOIN schools
+   ...> ON students.id = schools.id;
+
+  1|Jenny|91|1|1995-01-09|1|Business
+  2|Ralph|78|5|1994-12-25|2|Arts and Sciences
+  3|Josh|86|3|1996-11-13|3|Engineering
+  4|Lindsay|98|2|1997-06-04|4|Social Work
+  6|Rachel|87|1|1995-03-14|6|Architecture
+
+
+7.
+
+SELECT * FROM students
+   ...> LEFT OUTER JOIN schools
+   ...> ON students.id = schools.id
+   ...> WHERE schools.id IS null;
+
+  7|Carly|84|2|1996-09-01||
+  8|Zach|94|1|1995-05-20||
+  9|Bob|88|4|1997-04-20||
+  10|Daniel|92|3|1998-02-04||
+  11|Cassie|96|2|1996-10-31||
+
+
+8. 
+
+SELECT * FROM schools
+   ...> INNER JOIN students
+   ...> ON schools.id = students.school_id;
+
+  1|Business|1|Jenny|91|1|1995-01-09
+  5|Fine Arts|2|Ralph|78|5|1994-12-25
+  3|Engineering|3|Josh|86|3|1996-11-13
+  2|Arts and Sciences|4|Lindsay|98|2|1997-06-04
+  1|Business|6|Rachel|87|1|1995-03-14
+  2|Arts and Sciences|7|Carly|84|2|1996-09-01
+  1|Business|8|Zach|94|1|1995-05-20
+  4|Social Work|9|Bob|88|4|1997-04-20
+  3|Engineering|10|Daniel|92|3|1998-02-04
+  2|Arts and Sciences|11|Cassie|96|2|1996-10-31  
+
