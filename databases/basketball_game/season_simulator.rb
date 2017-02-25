@@ -14,14 +14,31 @@
 
 
 #---------- METHODS
-def create_team(db, name, wins, losses)
+def create_team(db, name, wins, losses, count)
+  stars = set_stars(count)
+
   team_creation = <<-SQL
     INSERT INTO teams (name, stars, quality, wins, losses)
-    VALUES (?, 5, 90, ?, ?)
+    VALUES (?, ?, 90, ?, ?)
   SQL
 
-  db.execute(team_creation, [name, wins, losses])
+  db.execute(team_creation, [name, stars, wins, losses])
 end
+
+def set_stars(count)
+  if count < 3
+    5
+  elsif count < 10
+    4
+  elsif count < 17
+    3
+  else
+    2
+  end
+end
+
+def set_quality
+
 
 def create_delta(db, team_id, num_teams) 
   true_delta = determine_delta(team_id, num_teams)
@@ -63,9 +80,21 @@ def determine_delta(team_id, num_teams)
   end
 
   delta
-end 
+end
 
+def adjust_quality(db, deltas, teams, team_id)
+  # Set quality equal to quality, then add delta
+  new_quality = teams[team_id - 1]['quality']
+  new_quality += deltas[team_id - 1][1]
 
+  apply_delta = <<-SQL
+    UPDATE teams
+    SET quality=?
+    WHERE id=?
+  SQL
+
+  db.execute(apply_delta, [new_quality, team_id])
+end
 
 
 
@@ -80,6 +109,7 @@ require 'faker'
 
 # Create league database
 db = SQLite3::Database.new("league.db")
+db.results_as_hash = true
 
 # Create teams table and quality adjustments table if they don't exist
 create_teams_table = <<-SQL
@@ -111,20 +141,34 @@ db.execute("DELETE FROM teams WHERE id>0")
 # Populate teams table
 num_teams = 20
 
-num_teams.times do 
-  create_team(db, "Knicks", 10, 5)
+num_teams.times do
+  teams = db.execute("SELECT * FROM teams") 
+  create_team(db, Faker::Team.name, 0, 0, teams.length)
 end
 
-all_teams = db.execute("SELECT * FROM teams")
+teams = db.execute("SELECT * FROM teams")
 
 # Wipe quality adjustments table (if id's exist)
 db.execute("DELETE FROM quality_adjustments WHERE id>0")
 
 
 # Populate quality adjustments table
-all_teams.each do |team|
-  create_delta(db, team[0], all_teams.length)
+teams.each do |team|
+  create_delta(db, team['id'], teams.length)
 end
+
+deltas = db.execute("SELECT * FROM quality_adjustments")
+
+#---------- TEST: INCREMENT TEAM QUALITY = success
+
+teams.each do |team|
+  adjust_quality(db, deltas, teams, team['id'])
+end
+
+
+
+
+
 
 
 
