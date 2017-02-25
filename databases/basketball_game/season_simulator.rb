@@ -15,14 +15,15 @@
 
 #---------- METHODS
 def create_team(db, name, wins, losses, count)
-  stars = set_stars(count)
+  stars = set_stars(count)  # Set num of stars each team receives
+  quality = set_quality(stars)  # Set quality of team, based on stars       
 
   team_creation = <<-SQL
     INSERT INTO teams (name, stars, quality, wins, losses)
-    VALUES (?, ?, 90, ?, ?)
+    VALUES (?, ?, ?, ?, ?)
   SQL
 
-  db.execute(team_creation, [name, stars, wins, losses])
+  db.execute(team_creation, [name, stars, quality, wins, losses])
 end
 
 def set_stars(count)
@@ -37,7 +38,24 @@ def set_stars(count)
   end
 end
 
-def set_quality
+def set_quality(stars)
+  
+  case stars
+    when 5
+      mean = 94
+    when 4
+      mean = 84
+    when 3
+      mean = 74
+    when 2
+      mean = 64 
+  end
+  sd = 2
+
+  # Set a mean based on stars, then do random sample of norm dist.
+  gen = Rubystats::NormalDistribution.new(mean, sd)
+  gen.rng.ceil
+end
 
 
 def create_delta(db, team_id, num_teams) 
@@ -106,6 +124,7 @@ end
 # Require gems
 require 'sqlite3'
 require 'faker'
+require 'rubystats'
 
 # Create league database
 db = SQLite3::Database.new("league.db")
@@ -158,6 +177,29 @@ teams.each do |team|
 end
 
 deltas = db.execute("SELECT * FROM quality_adjustments")
+
+
+#---------- SIMULATE/LOOP SEASON
+
+
+
+
+
+
+
+
+
+
+
+
+#---------- GENERATE FINAL STANDINGS
+
+
+
+
+
+
+
 
 #---------- TEST: INCREMENT TEAM QUALITY = success
 
