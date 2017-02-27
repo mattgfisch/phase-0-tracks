@@ -100,10 +100,11 @@ def determine_delta(team_id, num_teams)
   delta
 end
 
-def adjust_quality(db, deltas, teams, team_id)
+def adjust_quality(db, deltas, final_standings, team)
+  
   # Set quality equal to quality, then add delta
-  new_quality = teams[team_id - 1]['quality']
-  new_quality += deltas[team_id - 1][1]
+  new_quality = team['quality']
+  new_quality += deltas[final_standings.index(team)][1]
 
   apply_delta = <<-SQL
     UPDATE teams
@@ -111,10 +112,13 @@ def adjust_quality(db, deltas, teams, team_id)
     WHERE id=?
   SQL
 
-  db.execute(apply_delta, [new_quality, team_id])
+  db.execute(apply_delta, [new_quality, team['id']])
 end
 
-def play_schedule(team_id, teams, db)
+def play_schedule(team_id, db)
+  teams = db.execute("SELECT * FROM teams")
+
+  # Each team plays every team after them in the table twice
   for i in team_id...teams.length
     2.times do
       result = play_game(teams[team_id - 1],teams[i])
@@ -125,11 +129,15 @@ def play_schedule(team_id, teams, db)
 end
 
 def play_game(team_a, team_b)
+  # Random coefficient between 1 and 2 is created
   coeff = Random.new.rand + 1
 
+  # Coefficient is multiplied by quality of team a
   a_result = team_a['quality'] * coeff
+  # Complement of coefficient is multiplied by quality of team b
   b_result = team_b['quality'] * (3 - coeff)
 
+  # Team with biggest total (coeff * quality) is declared winner
   if a_result > b_result
     winner = team_a
     loser = team_b
@@ -143,6 +151,7 @@ end
 def apply_result(winner, loser, db)
   teams = db.execute("SELECT * FROM teams")
 
+  # Add win to win column for winner, add loss to loss column for loser
   new_wins = teams[winner['id'] - 1]['wins']
   new_wins += 1
 
@@ -230,21 +239,15 @@ deltas = db.execute("SELECT * FROM quality_adjustments")
 
 
 #---------- SIMULATE/LOOP SEASON
+100.times do
 teams.each do |team|
-  play_schedule(team['id'], teams, db)
+  play_schedule(team['id'], db)
 end
 
 
 
-
-
-
-
-
-
-
-
 #---------- GENERATE FINAL STANDINGS
+final_standings = db.execute("SELECT * FROM teams ORDER BY wins DESC")
 
 
 
@@ -253,11 +256,14 @@ end
 
 
 
-#---------- TEST: INCREMENT TEAM QUALITY = success
 
-# teams.each do |team|
-#   adjust_quality(db, deltas, teams, team['id'])
-# end
+#---------- INCREMENT TEAM QUALITY
+
+final_standings.each do |team|
+  adjust_quality(db, deltas, final_standings, team)
+end
+
+end
 
 
 
