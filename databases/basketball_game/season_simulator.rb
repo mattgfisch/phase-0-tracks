@@ -114,6 +114,56 @@ def adjust_quality(db, deltas, teams, team_id)
   db.execute(apply_delta, [new_quality, team_id])
 end
 
+def play_schedule(team_id, teams, db)
+  for i in team_id...teams.length
+    2.times do
+      result = play_game(teams[team_id - 1],teams[i])
+
+      apply_result(result[0], result[1], db)
+    end
+  end 
+end
+
+def play_game(team_a, team_b)
+  coeff = Random.new.rand + 1
+
+  a_result = team_a['quality'] * coeff
+  b_result = team_b['quality'] * (3 - coeff)
+
+  if a_result > b_result
+    winner = team_a
+    loser = team_b
+  else
+    winner = team_b
+    loser = team_a
+  end
+  [winner,loser]
+end
+
+def apply_result(winner, loser, db)
+  teams = db.execute("SELECT * FROM teams")
+
+  new_wins = teams[winner['id'] - 1]['wins']
+  new_wins += 1
+
+  new_losses = teams[loser['id'] - 1]['losses']
+  new_losses += 1
+
+  apply_win = <<-SQL
+    UPDATE teams
+    SET wins=?
+    WHERE id=?
+  SQL
+
+  apply_loss = <<-SQL
+    UPDATE teams
+    SET losses=?
+    WHERE id=?
+  SQL
+
+  db.execute(apply_win,[new_wins, winner['id']])
+  db.execute(apply_loss, [new_losses, loser['id']])
+end
 
 
 
@@ -180,7 +230,9 @@ deltas = db.execute("SELECT * FROM quality_adjustments")
 
 
 #---------- SIMULATE/LOOP SEASON
-
+teams.each do |team|
+  play_schedule(team['id'], teams, db)
+end
 
 
 
@@ -203,9 +255,9 @@ deltas = db.execute("SELECT * FROM quality_adjustments")
 
 #---------- TEST: INCREMENT TEAM QUALITY = success
 
-teams.each do |team|
-  adjust_quality(db, deltas, teams, team['id'])
-end
+# teams.each do |team|
+#   adjust_quality(db, deltas, teams, team['id'])
+# end
 
 
 
