@@ -9,14 +9,15 @@ function changeColor(event){
 var el = document.getElementById("test");
 el.addEventListener("click", changeColor);
 
-var containers = document.getElementsByClassName("container");
 
-var image = document.createElement("IMG");
+function addWater(event) {
+  var containers = document.getElementsByClassName("container");
+  var image = document.createElement("IMG");
+  image.setAttribute("src", "water-17.jpg");
+  image.setAttribute("alt", "Oh no");
 
-image.setAttribute("src", "water-17.jpg");
-image.setAttribute("alt", "Oh no");
-
-containers[0].appendChild(image);
+  containers[0].appendChild(image);
+}
 
 
-
+document.body.addEventListener("mouseout", addWater);
